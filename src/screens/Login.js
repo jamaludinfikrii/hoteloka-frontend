@@ -1,9 +1,16 @@
 import React from 'react'
-import { Container, Content, Form, Item, Input, Label, Button, Text, H1 } from 'native-base';
+import { Container, Content, Form, Item, Input, Label, Button, Text, H1, Header, Right, Body, Title, Left } from 'native-base';
 
-const Login = () => {
+const Login = ({navigation}) => {
     return(
         <Container>
+            <Header>
+                <Right></Right>
+                <Body>
+                    <Title>Login</Title>
+                </Body>
+                <Left />
+            </Header>
             <Content>
             <H1>Welcome Back</H1>
             <Text>Please login to your account!</Text>
@@ -24,7 +31,7 @@ const Login = () => {
                 </Button>
 
                 
-                <Text>Don't Have Account ? Register Here</Text>
+                <Text onPress={() => navigation.navigate('register')}>Don't Have Account ? Register Here</Text>
             </Content>
         </Container>
     )

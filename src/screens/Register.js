@@ -1,9 +1,16 @@
 import React from 'react'
-import { Container, Content, Form, Item, Input, Label, Button, Text, Header, H1 } from 'native-base';
+import { Container, Content, Form, Item, Input, Label, Button, Text, Header, H1, Right, Left, Body, Title } from 'native-base';
 
-const Register = () => {
+const Register = ({navigation}) => {
     return(
         <Container>
+            <Header>
+                <Right></Right>
+                <Body>
+                    <Title>Register</Title>
+                </Body>
+                <Left />
+            </Header>
             <Content>
                 <H1>Register Here</H1>
                 <Form>
@@ -23,7 +30,7 @@ const Register = () => {
                 </Button>
 
                 
-                <Text>Don't Have Account ? Register Here</Text>
+                <Text onPress={() => navigation.navigate('login')}>Already have account ? Login Here</Text>
             </Content>
         </Container>
     )
