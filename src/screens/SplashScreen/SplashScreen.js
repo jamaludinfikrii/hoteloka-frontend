@@ -1,11 +1,11 @@
-import { Container, Content, Text } from 'native-base'
+import { Container, Content, H1, Text } from 'native-base'
 import React from 'react'
 
 const SplashScreen = () => {
     return(
         <Container>
-            <Content>
-                <Text>HOTELOKA</Text>
+            <Content style={{paddingTop : 100}}>
+                <H1>HOTELOKA</H1>
             </Content>
         </Container>
         

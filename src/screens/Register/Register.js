@@ -36,7 +36,7 @@ const Register = ({navigation,user,onUserRegister}) => {
                 </Form>
 
                 <Text>{user.error && user.error}</Text>
-                <Button  onPress={onBtnClick} block>
+                <Button disabled={user.loading}  onPress={onBtnClick} block>
                     <Text>Sign In</Text>
                 </Button>
 

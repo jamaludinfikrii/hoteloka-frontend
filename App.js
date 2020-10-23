@@ -1,14 +1,43 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import {Container} from 'native-base'
 
 import { NavigationContainer } from '@react-navigation/native'
 import AuthRouter from './src/routers/AuthRouter'
 import MainRouter from './src/routers/MainRouter'
 import { connect } from 'react-redux'
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import {onSaveToken} from './src/redux/actions/userActions'
+import SplashScreen from './src/screens/SplashScreen/SplashScreen'
 
 
+const App = ({user,onSaveToken}) => {
+  const [isStorageChecked,setIsStorageChecked] = useState(false)
 
-const App = ({user}) => {
+  useEffect(() => {
+    const getStorageData = () => {
+      AsyncStorage.getItem('@token')
+      .then((data) => {
+        console.log(data)
+        if(data){
+          onSaveToken(data)
+        }
+        setIsStorageChecked(true)
+      })
+      .catch((err) => {
+        console.log(err)
+        setIsStorageChecked(true)
+      })
+    }
+
+    getStorageData()
+  },[])
+
+
+  if(isStorageChecked === false){
+    return(
+      <SplashScreen />
+    )
+  }
   return(
     <NavigationContainer>
       <Container>
@@ -23,6 +52,9 @@ const App = ({user}) => {
   )
 }
 
+const mapDispatchToProps = {
+  onSaveToken
+}
 
 const mapStateToProps = (state) => {
   return {
@@ -30,4 +62,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps)(App);
+export default connect(mapStateToProps,mapDispatchToProps)(App);
