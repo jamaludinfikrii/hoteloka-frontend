@@ -1,33 +1,33 @@
-import React, { useState } from 'react'
+import React from 'react'
 import {Container} from 'native-base'
 
 import { NavigationContainer } from '@react-navigation/native'
 import AuthRouter from './src/routers/AuthRouter'
 import MainRouter from './src/routers/MainRouter'
-import {createStore} from 'redux'
-import {Provider} from 'react-redux'
-import counterReducer from './src/redux/reducers/counterReducer'
-
-const store = createStore(counterReducer)
+import { connect } from 'react-redux'
 
 
-const App = () => {
-  const [user,setUser] = useState(null)
 
+const App = ({user}) => {
   return(
-    <Provider store={store}>
-      <NavigationContainer>
-        <Container>
-            {
-              user === null ?
-              <AuthRouter />
-              :
-              <MainRouter />
-            }
-        </Container>
-      </NavigationContainer>
-    </Provider>
+    <NavigationContainer>
+      <Container>
+          {
+            user === null ?
+            <AuthRouter />
+            :
+            <MainRouter />
+          }
+      </Container>
+    </NavigationContainer>
   )
 }
 
-export default App;
+
+const mapStateToProps = (state) => {
+  return {
+    user : state.user
+  }
+}
+
+export default connect(mapStateToProps)(App);

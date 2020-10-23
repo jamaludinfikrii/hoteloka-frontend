@@ -1,14 +1,13 @@
 import React from 'react'
 import { Container, Content, Form, Item, Input, Label, Button, Text, H1, Header, Right, Body, Title, Left } from 'native-base';
-import { connect } from 'react-redux';
 
-const Login = ({navigation,bebas}) => {
+const Login = ({navigation}) => {
     return(
         <Container>
             <Header>
                 <Right></Right>
                 <Body>
-                    <Title>Login {bebas.counter}</Title>
+                    <Title>Login</Title>
                 </Body>
                 <Left />
             </Header>
@@ -38,10 +37,5 @@ const Login = ({navigation,bebas}) => {
     )
 }
 
-const mapStateToProps = (state) => {
-    return{
-        bebas : state
-    }
-}
 
-export default connect(mapStateToProps)(Login);
+export default Login;
