@@ -2,8 +2,9 @@ import React, { useState } from 'react'
 import { Container, Content, Form, Item, Input, Label, Button, Text, Header, H1, Right, Left, Body, Title } from 'native-base';
 import Axios from 'axios';
 import { URL_API } from '../../supports/constants/urlApi';
+import {connect} from 'react-redux'
 
-const Register = ({navigation}) => {
+const Register = ({navigation,bebas}) => {
     const [email,setEmail] = useState('')
     const [password,setPassword] = useState('')
     
@@ -22,12 +23,13 @@ const Register = ({navigation}) => {
         }
     }
 
+
     return(
         <Container>
             <Header>
                 <Right></Right>
                 <Body>
-                    <Title>Register</Title>
+                    <Title>Register {bebas.counter}</Title>
                 </Body>
                 <Left />
             </Header>
@@ -56,7 +58,13 @@ const Register = ({navigation}) => {
     )
 }
 
-export default Register;
+const mapStateToProps = (state) => {
+    return{
+        bebas : state
+    }
+}
+
+export default connect(mapStateToProps)(Register);
 
 
 
