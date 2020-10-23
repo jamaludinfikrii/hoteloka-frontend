@@ -7,19 +7,19 @@ import MainRouter from './src/routers/MainRouter'
 
 
 const App = () => {
-  const [user,setUser] = useState('fikri')
+  const [user,setUser] = useState(null)
 
   return(
-    <Container>
-      <NavigationContainer>
-        {
-          user === null ?
-          <AuthRouter />
-          :
-          <MainRouter />
-        }
-      </NavigationContainer>
-    </Container>
+    <NavigationContainer>
+      <Container>
+          {
+            user === null ?
+            <AuthRouter />
+            :
+            <MainRouter />
+          }
+      </Container>
+    </NavigationContainer>
   )
 }
 

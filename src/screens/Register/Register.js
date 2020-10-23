@@ -1,7 +1,27 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Container, Content, Form, Item, Input, Label, Button, Text, Header, H1, Right, Left, Body, Title } from 'native-base';
+import Axios from 'axios';
+import { URL_API } from '../../supports/constants/urlApi';
 
 const Register = ({navigation}) => {
+    const [email,setEmail] = useState('')
+    const [password,setPassword] = useState('')
+    
+    const onBtnSignIn = () => {
+        try {
+            if(!email || !password) throw new Error("Username and password must be filled")
+            Axios.post(URL_API + '/auth/register',{email,password})
+            .then((res) => {
+                console.log(res)
+            })
+            .catch((err) => {
+                console.log(err)
+            })
+        } catch (error) {
+            
+        }
+    }
+
     return(
         <Container>
             <Header>
@@ -14,18 +34,18 @@ const Register = ({navigation}) => {
             <Content>
                 <H1>Register Here</H1>
                 <Form>
-                    <Item floatingLabel>
-                        <Label>Username</Label>
-                        <Input />
+                    <Item stackedLabel>
+                        <Label>Email</Label>
+                        <Input value={email} onChangeText={(text) => setEmail(text.toLowerCase())} />
                     </Item>
-                    <Item floatingLabel last>
+                    <Item stackedLabel>
                         <Label>Password</Label>
-                        <Input />
+                        <Input value={password} onChangeText={(text)=> setPassword(text)}/>
                     </Item>
                 </Form>
 
 
-                <Button block>
+                <Button onPress={onBtnSignIn} block>
                     <Text>Sign In</Text>
                 </Button>
 
@@ -37,3 +57,13 @@ const Register = ({navigation}) => {
 }
 
 export default Register;
+
+
+
+// app ios ==> simulator (iphone) ==> ip macbook 
+// backend ==> macbook 
+
+
+
+// react ==> macbook ==> localhost:4000
+// backend ==> macbook

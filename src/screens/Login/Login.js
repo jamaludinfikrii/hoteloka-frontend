@@ -15,11 +15,11 @@ const Login = ({navigation}) => {
             <H1>Welcome Back</H1>
             <Text>Please login to your account!</Text>
                 <Form>
-                    <Item floatingLabel>
+                    <Item stackedLabel>
                         <Label>Username</Label>
                         <Input />
                     </Item>
-                    <Item floatingLabel last>
+                    <Item stackedLabel>
                         <Label>Password</Label>
                         <Input />
                     </Item>
