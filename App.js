@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import {Container} from 'native-base'
+import {Container, StyleProvider} from 'native-base'
 
 import { NavigationContainer } from '@react-navigation/native'
 import AuthRouter from './src/routers/AuthRouter'
@@ -8,7 +8,9 @@ import { connect } from 'react-redux'
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {onSaveToken} from './src/redux/actions/userActions'
 import SplashScreen from './src/screens/SplashScreen/SplashScreen'
-
+import getTheme from './native-base-theme/components';
+import commonColor from './native-base-theme/variables/commonColor'
+import material from './native-base-theme/variables/material'
 
 const App = ({user,onSaveToken}) => {
   const [isStorageChecked,setIsStorageChecked] = useState(false)
@@ -40,14 +42,16 @@ const App = ({user,onSaveToken}) => {
   }
   return(
     <NavigationContainer>
-      <Container>
-          {
-            user.token !== '' ?
-            <MainRouter />
-            :
-            <AuthRouter />
-          }
-      </Container>
+      <StyleProvider style={getTheme(material)}>
+        <Container>
+            {
+              user.token !== '' ?
+              <MainRouter />
+              :
+              <AuthRouter />
+            }
+        </Container>
+      </StyleProvider>
     </NavigationContainer>
   )
 }

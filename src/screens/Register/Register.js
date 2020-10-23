@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
-import { Container, Content, Form, Item, Input, Label, Button, Text, Header, H1, Right, Left, Body, Title } from 'native-base';
+import { Container, Content, Form,getTheme, Item, Input, Label, Button, Text, Header, H1, Right, Left, Body, Title, StyleProvider } from 'native-base';
 import { connect } from 'react-redux';
 import {onUserRegister} from './../../redux/actions/userActions'
+import variables from '../../../native-base-theme/variables/variables';
 
 const Register = ({navigation,user,onUserRegister}) => {
     const [email,setEmail] = useState('')
@@ -15,13 +16,15 @@ const Register = ({navigation,user,onUserRegister}) => {
 
     return(
         <Container>
-            <Header>
-                <Right></Right>
-                <Body>
-                    <Title>Register</Title>
-                </Body>
-                <Left />
-            </Header>
+            <StyleProvider style={getTheme(variables)}>
+                <Header>
+                    <Right></Right>
+                    <Body>
+                        <Title>Register</Title>
+                    </Body>
+                    <Left />
+                </Header>
+            </StyleProvider>
             <Content>
                 <H1>Register Here</H1>
                 <Form>
@@ -36,7 +39,7 @@ const Register = ({navigation,user,onUserRegister}) => {
                 </Form>
 
                 <Text>{user.error && user.error}</Text>
-                <Button disabled={user.loading}  onPress={onBtnClick} block>
+                <Button disabled={user.loading} primary  onPress={onBtnClick} block>
                     <Text>Sign In</Text>
                 </Button>
 
