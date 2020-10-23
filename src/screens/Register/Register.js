@@ -3,8 +3,9 @@ import { Container, Content, Form, Item, Input, Label, Button, Text, Header, H1,
 import Axios from 'axios';
 import { URL_API } from '../../supports/constants/urlApi';
 import {connect} from 'react-redux'
+import {addCounter,minCounter} from './../../redux/actions/counterActions'
 
-const Register = ({navigation,bebas}) => {
+const Register = ({navigation,bebas,addCounter,minCounter}) => {
     const [email,setEmail] = useState('')
     const [password,setPassword] = useState('')
     
@@ -34,7 +35,8 @@ const Register = ({navigation,bebas}) => {
                 <Left />
             </Header>
             <Content>
-                <H1>Register Here</H1>
+                <H1 onPress={addCounter}>Register Here</H1>
+                <H1 onPress={minCounter}>Register Here</H1>
                 <Form>
                     <Item stackedLabel>
                         <Label>Email</Label>
@@ -58,13 +60,20 @@ const Register = ({navigation,bebas}) => {
     )
 }
 
+const mapDispatchToProps = {
+    addCounter : addCounter,
+    minCounter : minCounter
+}
+
 const mapStateToProps = (state) => {
     return{
         bebas : state
     }
 }
 
-export default connect(mapStateToProps)(Register);
+
+
+export default connect(mapStateToProps,mapDispatchToProps)(Register);
 
 
 

@@ -3,7 +3,13 @@ let data = {
 }
 
 function counterReducer (state=data,action){
-    return state
+    if(action.type === 'TAMBAH'){
+        return {counter : state.counter + 1}
+    }else if(action.type === 'MINUS'){
+        return {counter : state.counter - 1}
+    }else{
+        return state
+    }
 }
 
 export default counterReducer;
