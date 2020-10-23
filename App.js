@@ -13,10 +13,10 @@ const App = ({user}) => {
     <NavigationContainer>
       <Container>
           {
-            user === null ?
-            <AuthRouter />
-            :
+            user.token !== '' ?
             <MainRouter />
+            :
+            <AuthRouter />
           }
       </Container>
     </NavigationContainer>
