@@ -1,6 +1,7 @@
 import Axios from "axios"
 import { URL_API } from "../../supports/constants/urlApi"
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { AUTH_SUCCESS, ERROR, LOADING,CHANGE_EMAIL,CHANGE_PASSWORD,LOGOUT } from "../actionTypes";
 
 
 
@@ -9,7 +10,7 @@ export const onUserRegister = (email,password) => {
         try {
             dispatch(
                 {
-                    type : "LOADING"
+                    type : LOADING
                 }
             )
 
@@ -19,7 +20,7 @@ export const onUserRegister = (email,password) => {
                 if(res.data.error){
                     dispatch(
                         {
-                            type : "ERROR",
+                            type : ERROR,
                             payload : res.data.message
                         }
                     )
@@ -29,7 +30,7 @@ export const onUserRegister = (email,password) => {
                     .then((response) => {
                         dispatch(
                             {
-                                type : "AUTH_SUCCESS",
+                                type :AUTH_SUCCESS,
                                 payload : res.data.token
                             }
                         )
@@ -37,7 +38,7 @@ export const onUserRegister = (email,password) => {
                     .catch((err) => {
                         dispatch(
                             {
-                                type : "ERROR",
+                                type : ERROR,
                                 payload : err.message
                             }
                         )
@@ -49,7 +50,7 @@ export const onUserRegister = (email,password) => {
                 console.log(err)
                 dispatch(
                     {
-                        type : "ERROR",
+                        type : ERROR,
                         payload : err.message
                     }
                 )
@@ -58,7 +59,7 @@ export const onUserRegister = (email,password) => {
             console.log(error)
             dispatch(
                 {
-                    type : "ERROR",
+                    type : ERROR,
                     payload : error.message
                 }
             )
@@ -69,7 +70,95 @@ export const onUserRegister = (email,password) => {
 
 export const onSaveToken = (token) => {
     return{
-        type : "AUTH_SUCCESS",
+        type : AUTH_SUCCESS,
         payload : token
+    }
+}
+
+
+export const onLogotCLick = () => {
+    return (dispatch) => {
+        AsyncStorage.removeItem('@token')
+        .then((res) => {
+            dispatch(
+                {
+                    type : LOGOUT
+                }
+            )
+        })
+        .catch((err) => {
+            dispatch(
+                {
+                    type : ERROR,
+                    payload : err.message
+                }
+            )
+        })
+    }
+}
+
+
+export const onEmailChange = (text) => {
+    return{
+        type : CHANGE_EMAIL,
+        payload : text
+    }
+}
+
+export const onPasswordChange = (text) => {
+    return{
+        type : CHANGE_PASSWORD,
+        payload : text
+    }
+}
+
+
+export const onLoginClick = (email,password) => {
+    return (dispatch) => {
+        dispatch(
+            {
+                type : LOADING
+            }
+        )
+
+        Axios.post(URL_API + '/auth/login',{email,password})
+        .then((res) => {
+            if(res.data.error){
+                dispatch(
+                    {
+                        type : ERROR,
+                        payload : res.data.message
+                    }
+                )
+            }else{
+                
+                AsyncStorage.setItem('@token',res.data.token)
+                .then((response) => {
+                    dispatch(
+                        {
+                            type :AUTH_SUCCESS,
+                            payload : res.data.token
+                        }
+                    )
+                })
+                .catch((err) => {
+                    dispatch(
+                        {
+                            type : ERROR,
+                            payload : err.message
+                        }
+                    )
+                })
+                
+            }
+        })
+        .catch((err) => {
+            dispatch(
+                {
+                    type : ERROR,
+                    payload : err.message
+                }
+            )
+        })
     }
 }

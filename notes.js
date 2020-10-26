@@ -8,4 +8,16 @@
 // CRUD
 
 
+var obj = {
+    email : "fikri",
+    password : "",
+    token : "xxxxxxccccc"
+}
+
+
+obj = {...obj,token : "aaaabbbccc"}
+
+console.log(obj)
+
+
 
