@@ -1,8 +1,9 @@
 import { Button, Container, Content, Text, Title } from 'native-base'
 import React from 'react'
+import { connect } from 'react-redux'
 
-const Home = () => {
-
+const Home = ({hotels}) => {
+    console.log(hotels)
     return(
         <Container>
             <Content>
@@ -13,5 +14,10 @@ const Home = () => {
         
     )
 }
+const mapStateToProps = (state) => {
+    return{
+        hotels : state.hotels
+    }
+}
 
-export default Home
+export default connect(mapStateToProps)(Home);

@@ -12,7 +12,6 @@ const Register = ({navigation,user,onUserRegister}) => {
         onUserRegister(email,password)
     }
 
-    console.log(user)
 
     return(
         <Container>

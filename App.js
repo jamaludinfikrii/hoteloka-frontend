@@ -19,7 +19,6 @@ const App = ({user,onSaveToken}) => {
     const getStorageData = () => {
       AsyncStorage.getItem('@token')
       .then((data) => {
-        console.log(data)
         if(data){
           onSaveToken(data)
         }
