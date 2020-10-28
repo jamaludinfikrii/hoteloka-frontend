@@ -6,7 +6,7 @@ import ProductsCard from '../../components/ProductsCard'
 import { URL_API } from '../../supports/constants/urlApi'
 import {getAllHotels,sortHotelByPriceAsc} from './../../redux/actions/hotelActions'
 
-const Home = ({hotels,user,getAllHotels,sortHotelByPriceAsc}) => {
+const Home = ({hotels,user,getAllHotels,sortHotelByPriceAsc,navigation}) => {
 
     useEffect(() => {
         getAllHotels()
@@ -18,7 +18,14 @@ const Home = ({hotels,user,getAllHotels,sortHotelByPriceAsc}) => {
     const renderData = () => {
         return hotels.data.map((val,index) => {
             return(
-              <ProductsCard key={index} index={index} name={val[' name']} price={val.price} url={val.url} />
+              <ProductsCard 
+                key={index} 
+                onPress={() => {navigation.navigate('hotel-detail')}} 
+                index={index} 
+                name={val[' name']} 
+                price={val.price} 
+                url={val.url} 
+            />
             )
         })
     }
