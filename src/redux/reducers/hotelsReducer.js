@@ -1,4 +1,4 @@
-const { LOADING, DATA_LOADED, ERROR } = require("../actionTypes")
+const { HOTELS_ERROR,HOTELS_LOADED,HOTELS_LOADING } = require("../actionTypes")
 
 const data = {
     loading : false,
@@ -9,11 +9,11 @@ const data = {
 
 function hotelsReducer (state=data,action) {
     switch(action.type){
-        case LOADING :
-            return {loading : true, data : null}
-        case DATA_LOADED:
-            return {loading : false, data : action.payload}
-        case ERROR:
+        case HOTELS_LOADING :
+            return {loading : true, data : null ,erorr : null}
+        case HOTELS_LOADED:
+            return {loading : false, data : action.payload , error : null}
+        case HOTELS_ERROR:
             return {...state, loading : false, error : action.payload}
         default : 
             return state

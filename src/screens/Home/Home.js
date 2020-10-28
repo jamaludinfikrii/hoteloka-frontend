@@ -1,13 +1,19 @@
 import { Button, Container, Content, Text, Title } from 'native-base'
-import React from 'react'
+import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
+import {getAllHotels} from './../../redux/actions/hotelActions'
 
-const Home = ({hotels}) => {
-    console.log(hotels)
+const Home = ({hotels,user,getAllHotels}) => {
+
+    useEffect(() => {
+        getAllHotels()
+    },[])
+
+
     return(
         <Container>
             <Content>
-                <Text>Ini Home</Text>
+                
                 
             </Content>
         </Container>
@@ -16,8 +22,11 @@ const Home = ({hotels}) => {
 }
 const mapStateToProps = (state) => {
     return{
-        hotels : state.hotels
+        hotels : state.hotels,
+        user : state.user
     }
 }
 
-export default connect(mapStateToProps)(Home);
+const mapDispatchToProps = {getAllHotels}
+
+export default connect(mapStateToProps,mapDispatchToProps)(Home);
