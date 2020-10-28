@@ -1,4 +1,4 @@
-const { HOTELS_ERROR,HOTELS_LOADED,HOTELS_LOADING } = require("../actionTypes")
+const { HOTELS_ERROR,HOTELS_LOADED,HOTELS_LOADING, SORT_PRICE_ASC } = require("../actionTypes")
 
 const data = {
     loading : false,
@@ -15,6 +15,13 @@ function hotelsReducer (state=data,action) {
             return {loading : false, data : action.payload , error : null}
         case HOTELS_ERROR:
             return {...state, loading : false, error : action.payload}
+        case SORT_PRICE_ASC:
+            let hotelSorted = [...state.data]
+            hotelSorted.sort((a,b) => {
+                return a.price - b.price
+            })
+
+            return {...state,data : hotelSorted}
         default : 
             return state
     }

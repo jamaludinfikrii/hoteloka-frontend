@@ -1,6 +1,6 @@
 import Axios from "axios"
 import { URL_API } from "../../supports/constants/urlApi"
-import { HOTELS_ERROR, HOTELS_LOADED, HOTELS_LOADING } from "../actionTypes"
+import { HOTELS_ERROR, HOTELS_LOADED, HOTELS_LOADING,SORT_PRICE_ASC } from "../actionTypes"
 
 export const getAllHotels = () => {
     return (dispatch) => {
@@ -28,5 +28,11 @@ export const getAllHotels = () => {
                 payload : err.message
             })
         })
+    }
+}
+
+export const sortHotelByPriceAsc = () => {
+    return{
+        type : SORT_PRICE_ASC
     }
 }
