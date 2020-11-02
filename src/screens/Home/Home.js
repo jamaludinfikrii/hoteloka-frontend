@@ -12,7 +12,6 @@ const Home = ({hotels,user,getAllHotels,sortHotelByPriceAsc,navigation}) => {
         getAllHotels()
     },[])
 
-
     
 
     const renderData = () => {
@@ -20,9 +19,9 @@ const Home = ({hotels,user,getAllHotels,sortHotelByPriceAsc,navigation}) => {
             return(
               <ProductsCard 
                 key={index} 
-                onPress={() => {navigation.navigate('hotel-detail')}} 
+                onPress={() => {navigation.navigate('hotel-detail',{id: val.id})}} 
                 index={index} 
-                name={val[' name']} 
+                name={val['name']} 
                 price={val.price} 
                 url={val.url} 
             />
