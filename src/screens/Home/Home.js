@@ -8,12 +8,18 @@ import {getAllHotels,sortHotelByPriceAsc,onChangeDateHotelFilter} from './../../
 import DateTimePicker from '@react-native-community/datetimepicker';
 
 
+
 const Home = ({hotels,user,getAllHotels,sortHotelByPriceAsc,navigation,onChangeDateHotelFilter}) => {
 
 
     useEffect(() => {
-        getAllHotels()
-    },[])
+        let date = hotels.filterDate
+        let tanggal = date.getDate()
+        tanggal = tanggal > 9 ? tanggal : '0'+tanggal
+        date = date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + tanggal
+        
+        getAllHotels(date)
+    },[hotels.filterDate])
 
     
 
@@ -42,7 +48,6 @@ const Home = ({hotels,user,getAllHotels,sortHotelByPriceAsc,navigation,onChangeD
         )
     }
 
-    console.log(hotels.filterDate)
     return(
         <Container>
             <Content>

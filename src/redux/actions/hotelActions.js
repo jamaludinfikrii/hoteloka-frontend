@@ -2,13 +2,13 @@ import Axios from "axios"
 import { URL_API } from "../../supports/constants/urlApi"
 import { CHANGE_DATE_FILTER_HOTEL, HOTELS_ERROR, HOTELS_LOADED, HOTELS_LOADING,SORT_PRICE_ASC } from "../actionTypes"
 
-export const getAllHotels = () => {
+export const getAllHotels = (date) => {
     return (dispatch) => {
 
         dispatch({
             type : HOTELS_LOADING
         })
-        Axios.get(URL_API + '/hotels')
+        Axios.get(URL_API + '/hotels?date='+date)
         .then((res) => {
             if(res.data.error){
                 dispatch({

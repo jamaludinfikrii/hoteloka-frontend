@@ -1,5 +1,6 @@
 const { HOTELS_ERROR,HOTELS_LOADED,HOTELS_LOADING, SORT_PRICE_ASC, CHANGE_DATE_FILTER_HOTEL } = require("../actionTypes")
 
+
 const data = {
     loading : false,
     data : null,
