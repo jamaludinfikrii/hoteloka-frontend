@@ -1,6 +1,6 @@
 import Axios from "axios"
 import { URL_API } from "../../supports/constants/urlApi"
-import { HOTELS_ERROR, HOTELS_LOADED, HOTELS_LOADING,SORT_PRICE_ASC } from "../actionTypes"
+import { CHANGE_DATE_FILTER_HOTEL, HOTELS_ERROR, HOTELS_LOADED, HOTELS_LOADING,SORT_PRICE_ASC } from "../actionTypes"
 
 export const getAllHotels = () => {
     return (dispatch) => {
@@ -36,3 +36,11 @@ export const sortHotelByPriceAsc = () => {
         type : SORT_PRICE_ASC
     }
 }
+
+
+export const onChangeDateHotelFilter = (ev,selectedDate) => {
+    return{
+        type : CHANGE_DATE_FILTER_HOTEL,
+        payload : selectedDate
+    }
+}   

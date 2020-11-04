@@ -1,12 +1,15 @@
-import { ActionSheet, Badge, Body, Button, Card, CardItem, Container, Content, H1, H3, Icon, Text, Title } from 'native-base'
+import { ActionSheet, Badge, Body, Button, Card, CardItem, Container, Content, H1, H3, Icon, Text, Title,DatePicker } from 'native-base'
 import React, { useEffect } from 'react'
 import { Image, View } from 'react-native'
 import { connect } from 'react-redux'
 import ProductsCard from '../../components/ProductsCard'
 import { URL_API } from '../../supports/constants/urlApi'
-import {getAllHotels,sortHotelByPriceAsc} from './../../redux/actions/hotelActions'
+import {getAllHotels,sortHotelByPriceAsc,onChangeDateHotelFilter} from './../../redux/actions/hotelActions'
+import DateTimePicker from '@react-native-community/datetimepicker';
 
-const Home = ({hotels,user,getAllHotels,sortHotelByPriceAsc,navigation}) => {
+
+const Home = ({hotels,user,getAllHotels,sortHotelByPriceAsc,navigation,onChangeDateHotelFilter}) => {
+
 
     useEffect(() => {
         getAllHotels()
@@ -28,7 +31,6 @@ const Home = ({hotels,user,getAllHotels,sortHotelByPriceAsc,navigation}) => {
             )
         })
     }
-
     if(hotels.data === null){
         return (
             <Container>
@@ -39,11 +41,20 @@ const Home = ({hotels,user,getAllHotels,sortHotelByPriceAsc,navigation}) => {
             </Container>
         )
     }
+
+    console.log(hotels.filterDate)
     return(
         <Container>
             <Content>
                 <H1>Find Hotel Near You ..</H1>
                 <Text onPress={sortHotelByPriceAsc}>Sort By</Text> 
+                <DateTimePicker 
+                    value={hotels.filterDate}
+                    minimumDate={new Date()}
+                    maximumDate={new Date(new Date().getFullYear(),new Date().getMonth(),new Date().getDate() + 14)}
+                    onChange={onChangeDateHotelFilter}
+                    mode='date'
+                />
                 {renderData()}
             </Content>
         </Container>
@@ -57,6 +68,6 @@ const mapStateToProps = (state) => {
     }
 }
 
-const mapDispatchToProps = {getAllHotels,sortHotelByPriceAsc}
+const mapDispatchToProps = {getAllHotels,sortHotelByPriceAsc,onChangeDateHotelFilter}
 
 export default connect(mapStateToProps,mapDispatchToProps)(Home);

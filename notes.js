@@ -8,16 +8,7 @@
 // CRUD
 
 
-var obj = {
-    email : "fikri",
-    password : "",
-    token : "xxxxxxccccc"
-}
-
-
-obj = {...obj,token : "aaaabbbccc"}
-
-console.log(obj)
-
-
-
+// flow app 
+    // home page, product list, yang tampil hotel yang available di tanggal ini
+    // ada filter date buat nyari hotel di spesifik date
+    // hotel detail => pilih kamar => book summary ==> checkout (kebikin transaksi, status waiting for payment) => 10 menit 

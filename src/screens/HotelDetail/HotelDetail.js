@@ -89,6 +89,9 @@ const HotelDetail = ({getHotelDetailById,data,route}) => {
                                                 <Text style={{color:"#b3b3b3",fontWeight: "bold",fontSize : 14}}>
                                                     Rp. {val.price.toLocaleString('id-ID')}
                                                 </Text>
+                                                <Text style={{color:"#b3b3b3",fontWeight: "bold",fontSize : 14}}>
+                                                   {val.room_counts} room(s) available
+                                                </Text>
                                                 
                                             </View>
                                         </View>
