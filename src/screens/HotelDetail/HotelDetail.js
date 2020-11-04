@@ -6,10 +6,15 @@ import { connect } from 'react-redux'
 import { URL_API } from '../../supports/constants/urlApi'
 import {getHotelDetailById} from './../../redux/actions/hotelDetailActions'
 
-const HotelDetail = ({getHotelDetailById,data,route}) => {
+const HotelDetail = ({getHotelDetailById,data,route,filterDate}) => {
 
     useEffect(() => {
-        getHotelDetailById(route.params.id)
+        let date = filterDate
+        let tanggal = date.getDate()
+        tanggal = tanggal > 9 ? tanggal : '0'+tanggal
+        date = date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + tanggal
+
+        getHotelDetailById(route.params.id,date)
     },[])
 
     const renderStar = (countStar) => {
@@ -90,7 +95,7 @@ const HotelDetail = ({getHotelDetailById,data,route}) => {
                                                     Rp. {val.price.toLocaleString('id-ID')}
                                                 </Text>
                                                 <Text style={{color:"#b3b3b3",fontWeight: "bold",fontSize : 14}}>
-                                                   {val.room_counts} room(s) available
+                                                   {val.room_left} room(s) available
                                                 </Text>
                                                 
                                             </View>
@@ -114,7 +119,8 @@ const mapDispatchToProps = {getHotelDetailById}
 
 const mapStateToProps = (state) => {
     return{
-        data : state.hotelDetail
+        data : state.hotelDetail,
+        filterDate : state.hotels.filterDate
     }
 }
 
