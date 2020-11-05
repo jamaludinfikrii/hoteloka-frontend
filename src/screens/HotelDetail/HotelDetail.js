@@ -1,6 +1,6 @@
 import { Container, Content, H1, Text, View,Card,CardItem,Body } from 'native-base'
 import React, { useEffect } from 'react'
-import { Image } from 'react-native'
+import { Image,Button, TouchableOpacity } from 'react-native'
 import Icon from 'react-native-vector-icons/FontAwesome'
 import { connect } from 'react-redux'
 import { URL_API } from '../../supports/constants/urlApi'
@@ -103,6 +103,10 @@ const HotelDetail = ({getHotelDetailById,data,route,filterDate,filterDateEnd}) =
                                                    {val.room_left} room(s) available
                                                 </Text>
                                                 
+                                                <TouchableOpacity disabled={val.room_left === 0} style={{marginTop : 10}}>
+                                                    <Text style={{fontSize : 12,color : val.room_left === 0 ? "#b3b3b3" : "#3F51B5",fontWeight :"bold" }}>Book Now</Text>
+                                                </TouchableOpacity>
+                                                   
                                             </View>
                                         </View>
                                     </CardItem>
