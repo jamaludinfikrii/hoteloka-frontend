@@ -4,12 +4,12 @@ import { Image, View } from 'react-native'
 import { connect } from 'react-redux'
 import ProductsCard from '../../components/ProductsCard'
 import { URL_API } from '../../supports/constants/urlApi'
-import {getAllHotels,sortHotelByPriceAsc,onChangeDateHotelFilter} from './../../redux/actions/hotelActions'
+import {getAllHotels,sortHotelByPriceAsc,onChangeDateHotelFilter, onChangeEndDateHotelFilter} from './../../redux/actions/hotelActions'
 import DateTimePicker from '@react-native-community/datetimepicker';
 
 
 
-const Home = ({hotels,user,getAllHotels,sortHotelByPriceAsc,navigation,onChangeDateHotelFilter}) => {
+const Home = ({hotels,user,getAllHotels,sortHotelByPriceAsc,navigation,onChangeDateHotelFilter,onChangeEndDateHotelFilter}) => {
 
 
     useEffect(() => {
@@ -17,8 +17,13 @@ const Home = ({hotels,user,getAllHotels,sortHotelByPriceAsc,navigation,onChangeD
         let tanggal = date.getDate()
         tanggal = tanggal > 9 ? tanggal : '0'+tanggal
         date = date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + tanggal
+
+        let end = hotels.filterDateEnd
+        let tanggalEnd = end.getDate()
+        tanggalEnd = tanggalEnd > 9 ? tanggalEnd : '0'+tanggalEnd
+        end = end.getFullYear() + '-' + (end.getMonth() + 1) + '-' + tanggalEnd
         
-        getAllHotels(date)
+        getAllHotels(date,end)
     },[hotels.filterDate])
 
     
@@ -60,6 +65,14 @@ const Home = ({hotels,user,getAllHotels,sortHotelByPriceAsc,navigation,onChangeD
                     onChange={onChangeDateHotelFilter}
                     mode='date'
                 />
+
+                <DateTimePicker 
+                    value={hotels.filterDateEnd}
+                    minimumDate={hotels.filterDateEnd}
+                    maximumDate={new Date(new Date().getFullYear(),new Date().getMonth(),new Date().getDate() + 14)}
+                    onChange={onChangeEndDateHotelFilter}
+                    mode='date'
+                />
                 {renderData()}
             </Content>
         </Container>
@@ -73,6 +86,6 @@ const mapStateToProps = (state) => {
     }
 }
 
-const mapDispatchToProps = {getAllHotels,sortHotelByPriceAsc,onChangeDateHotelFilter}
+const mapDispatchToProps = {getAllHotels,sortHotelByPriceAsc,onChangeDateHotelFilter,onChangeEndDateHotelFilter}
 
 export default connect(mapStateToProps,mapDispatchToProps)(Home);

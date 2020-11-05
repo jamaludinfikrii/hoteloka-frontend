@@ -1,11 +1,12 @@
-const { HOTELS_ERROR,HOTELS_LOADED,HOTELS_LOADING, SORT_PRICE_ASC, CHANGE_DATE_FILTER_HOTEL } = require("../actionTypes")
+const { HOTELS_ERROR,HOTELS_LOADED,HOTELS_LOADING, SORT_PRICE_ASC, CHANGE_DATE_FILTER_HOTEL, CHANGE_DATE_END_FILTER_HOTEL } = require("../actionTypes")
 
 
 const data = {
     loading : false,
     data : null,
     error : null,
-    filterDate : new Date()
+    filterDate : new Date(),
+    filterDateEnd : new Date(new Date().getFullYear(),new Date().getMonth(),new Date().getDate() + 1)
 }
 
 
@@ -25,7 +26,9 @@ function hotelsReducer (state=data,action) {
 
             return {...state,data : hotelSorted}
         case CHANGE_DATE_FILTER_HOTEL :
-            return {...state,filterDate : action.payload}
+            return {...state,filterDate : action.payload,filterDateEnd : new Date(action.payload.getFullYear(),action.payload.getMonth(),action.payload.getDate() + 1)}
+        case CHANGE_DATE_END_FILTER_HOTEL : 
+            return {...state,filterDateEnd : action.payload}
         default : 
             return state
     }

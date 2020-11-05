@@ -1,14 +1,14 @@
 import Axios from "axios"
 import { URL_API } from "../../supports/constants/urlApi"
-import { CHANGE_DATE_FILTER_HOTEL, HOTELS_ERROR, HOTELS_LOADED, HOTELS_LOADING,SORT_PRICE_ASC } from "../actionTypes"
+import { CHANGE_DATE_END_FILTER_HOTEL, CHANGE_DATE_FILTER_HOTEL, HOTELS_ERROR, HOTELS_LOADED, HOTELS_LOADING,SORT_PRICE_ASC } from "../actionTypes"
 
-export const getAllHotels = (date) => {
+export const getAllHotels = (date,end) => {
     return (dispatch) => {
 
         dispatch({
             type : HOTELS_LOADING
         })
-        Axios.get(URL_API + '/hotels?date='+date)
+        Axios.get(URL_API + '/hotels?date='+date + '&end=' + end)
         .then((res) => {
             if(res.data.error){
                 dispatch({
@@ -41,6 +41,14 @@ export const sortHotelByPriceAsc = () => {
 export const onChangeDateHotelFilter = (ev,selectedDate) => {
     return{
         type : CHANGE_DATE_FILTER_HOTEL,
+        payload : selectedDate
+    }
+}   
+
+
+export const onChangeEndDateHotelFilter = (ev,selectedDate) => {
+    return{
+        type : CHANGE_DATE_END_FILTER_HOTEL,
         payload : selectedDate
     }
 }   
