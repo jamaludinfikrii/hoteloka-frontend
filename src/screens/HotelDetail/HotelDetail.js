@@ -6,7 +6,7 @@ import { connect } from 'react-redux'
 import { URL_API } from '../../supports/constants/urlApi'
 import {getHotelDetailById} from './../../redux/actions/hotelDetailActions'
 
-const HotelDetail = ({getHotelDetailById,data,route,filterDate,filterDateEnd}) => {
+const HotelDetail = ({getHotelDetailById,data,route,filterDate,filterDateEnd,navigation}) => {
 
     useEffect(() => {
         let date = filterDate
@@ -103,7 +103,7 @@ const HotelDetail = ({getHotelDetailById,data,route,filterDate,filterDateEnd}) =
                                                    {val.room_left} room(s) available
                                                 </Text>
                                                 
-                                                <TouchableOpacity disabled={val.room_left === 0} style={{marginTop : 10}}>
+                                                <TouchableOpacity disabled={val.room_left === 0} style={{marginTop : 10}} onPress={() =>navigation.navigate('book-summary')}>
                                                     <Text style={{fontSize : 12,color : val.room_left === 0 ? "#b3b3b3" : "#3F51B5",fontWeight :"bold" }}>Book Now</Text>
                                                 </TouchableOpacity>
                                                    
