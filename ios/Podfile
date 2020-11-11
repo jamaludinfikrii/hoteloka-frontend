@@ -11,6 +11,8 @@ target 'hoteloka' do
   pod 'RNCAsyncStorage', :path => '../node_modules/@react-native-async-storage/async-storage'
 
 
+  pod 'react-native-onesignal', :path => '../node_modules/react-native-onesignal'
+
   target 'hotelokaTests' do
     inherit! :complete
     # Pods for testing

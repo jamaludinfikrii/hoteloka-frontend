@@ -58,21 +58,21 @@ const Home = ({hotels,user,getAllHotels,sortHotelByPriceAsc,navigation,onChangeD
             <Content>
                 <H1>Find Hotel Near You ..</H1>
                 <Text onPress={sortHotelByPriceAsc}>Sort By</Text> 
-                <DateTimePicker 
+                {/* <DateTimePicker 
                     value={hotels.filterDate}
                     minimumDate={new Date()}
                     maximumDate={new Date(new Date().getFullYear(),new Date().getMonth(),new Date().getDate() + 14)}
                     onChange={onChangeDateHotelFilter}
                     mode='date'
-                />
+                /> */}
 
-                <DateTimePicker 
+                {/* <DateTimePicker 
                     value={hotels.filterDateEnd}
                     minimumDate={hotels.filterDateEnd}
                     maximumDate={new Date(new Date().getFullYear(),new Date().getMonth(),new Date().getDate() + 14)}
                     onChange={onChangeEndDateHotelFilter}
                     mode='date'
-                />
+                /> */}
                 {renderData()}
             </Content>
         </Container>
