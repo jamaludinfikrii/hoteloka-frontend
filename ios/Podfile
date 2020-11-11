@@ -13,6 +13,8 @@ target 'hoteloka' do
 
   pod 'react-native-onesignal', :path => '../node_modules/react-native-onesignal'
 
+  pod 'react-native-image-picker', :path => '../node_modules/react-native-image-picker'
+
   target 'hotelokaTests' do
     inherit! :complete
     # Pods for testing
