@@ -1,10 +1,12 @@
 import { Button, Container, Content, H1, Text } from 'native-base'
-import React from 'react'
+import React, { useState } from 'react'
 import {onLogotCLick} from './../../redux/actions/userActions'
 import {connect} from 'react-redux'
 import ImagePicker from 'react-native-image-picker';
+import { Image } from 'react-native';
 
 const MyAccount = ({onLogotCLick}) => {
+    const [photo,setPhoto] = useState(null)
 
     const onChangeImage = () => {
         ImagePicker.showImagePicker({ storageOptions: { privateDirectory: true } },(response) => {
@@ -17,7 +19,8 @@ const MyAccount = ({onLogotCLick}) => {
             } else if (response.customButton) {
               console.log('User tapped custom button: ', response.customButton);
             } else {
-              const source = { uri: response.uri };
+             
+              setPhoto({uri : response.uri,type : response.type,filename : response.fileName})
             }
         })
     }
@@ -32,6 +35,20 @@ const MyAccount = ({onLogotCLick}) => {
                 <Button rounded danger onPress={onChangeImage}>
                     <Text>Change Image Profile</Text>
                 </Button>
+                {
+                    photo &&
+                    <Image 
+                        source={{uri : photo.uri}}
+                        style={{width : 200,height : 200}}
+                    />
+
+                }
+                {
+                    photo &&
+                    <Button>
+                        <Text>Save</Text>
+                    </Button>
+                }
             </Content>
         </Container>
         
