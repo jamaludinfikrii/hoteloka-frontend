@@ -84,7 +84,7 @@ const MainRouter = ({token}) => {
             }}
         >
             <Tab.Screen 
-                name='home' 
+                name='hommy' 
                 component={HomeRouter} 
                 options={{tabBarIcon : (props) => {
                     return(

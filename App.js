@@ -34,13 +34,25 @@ const App = ({user,onSaveToken}) => {
   },[])
 
 
+  const linkingOptions = {
+    prefixes : ['https://hotelokaApp.com','hotelokaApp://'],
+    config : {
+      screens: {
+        hommy: 'home',
+        mybooking: 'mybooking',
+        myinbox : "myinbox",
+        myaccount : "myaccount"
+      },     
+    }
+  }
+
   if(isStorageChecked === false){
     return(
       <SplashScreen />
     )
   }
   return(
-    <NavigationContainer>
+    <NavigationContainer linking={linkingOptions}>
       <StyleProvider style={getTheme(material)}>
         <Container>
             {
@@ -66,3 +78,13 @@ const mapStateToProps = (state) => {
 }
 
 export default connect(mapStateToProps,mapDispatchToProps)(App);
+
+
+
+
+
+  // MainRouter
+      // home
+      // mybooking
+      // saved
+      // my account

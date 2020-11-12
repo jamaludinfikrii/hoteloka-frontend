@@ -32,3 +32,8 @@
 
     // One Signal punya id device 62648b8a-113a-4127-aa4d-0af0aa320ac2
     // Hoteloka juga punya id user 1 // fikri@gmail.com
+
+
+
+// Deeplinking
+    // create a link for your router app
