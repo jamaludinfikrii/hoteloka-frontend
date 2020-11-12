@@ -33,7 +33,7 @@ const Home = ({hotels,user,getAllHotels,sortHotelByPriceAsc,navigation,onChangeD
             return(
               <ProductsCard 
                 key={index} 
-                onPress={() => {navigation.navigate('hotel-detail',{id: val.id})}} 
+                onPress={() => {navigation.navigate('hotelDetail',{id: val.id})}} 
                 index={index} 
                 name={val['name']} 
                 price={val.price} 

@@ -11,7 +11,7 @@ export default () => {
     return (
         <Stack.Navigator>
             <Stack.Screen name='home' component={Home} />
-            <Stack.Screen name='hotel-detail' component={HotelDetail} />
+            <Stack.Screen name='hotelDetail' component={HotelDetail} />
             <Stack.Screen name='book-summary' component={BookSummary} />
         </Stack.Navigator>
     )

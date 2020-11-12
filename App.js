@@ -34,11 +34,24 @@ const App = ({user,onSaveToken}) => {
   },[])
 
 
+  const homeConfig = {
+    path : "hommy",
+    screens : {
+      home : 'home',
+      hotelDetail : {
+        path : 'detailHotel/:id',
+        params : {
+          id : 1
+        }
+      },
+    }
+  }
+
   const linkingOptions = {
     prefixes : ['https://hotelokaApp.com','hotelokaApp://'],
     config : {
       screens: {
-        hommy: 'home',
+        hommy: homeConfig,
         mybooking: 'mybooking',
         myinbox : "myinbox",
         myaccount : "myaccount"
